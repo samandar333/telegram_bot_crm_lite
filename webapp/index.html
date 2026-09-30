@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#edf2ef">
+  <title>P24TEX | Nosozliklar</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://telegram.org/js/telegram-web-app.js?62"></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">P</div>
+      <div class="brand-copy">
+        <p class="eyebrow" data-i18n="brand">P24TEX · TEXNIK XIZMAT</p>
+        <h1 data-i18n="title">Nosozliklar</h1>
+      </div>
+      <div class="user-mark" id="user-mark" aria-hidden="true">P</div>
+    </header>
+
+    <nav class="tabs" aria-label="Views">
+      <button class="tab is-active" id="tab-new" type="button" data-view="new" data-i18n="tabNew">Yangi report</button>
+      <button class="tab" id="tab-active" type="button" data-view="active">
+        <span data-i18n="tabActive">Faol</span>
+        <span class="tab-count" id="active-count">0</span>
+      </button>
+    </nav>
+
+    <section class="view" id="view-new">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow" data-i18n="newEyebrow">YANGI MUROJAAT</p>
+          <h2 data-i18n="newTitle">Nosozlik haqida xabar bering</h2>
+        </div>
+        <span class="step-label">01 / 03</span>
+      </div>
+
+      <form id="report-form">
+        <label class="field-label" for="object-select" data-i18n="objectLabel">Obyekt</label>
+        <select id="object-select" name="object_id" required></select>
+
+        <fieldset class="issue-fieldset">
+          <legend class="field-label" data-i18n="issueLabel">Nosozlik turi</legend>
+          <div class="issue-grid" id="issue-grid"></div>
+        </fieldset>
+
+        <div class="field-row">
+          <div>
+            <p class="field-label" data-i18n="mediaLabel">Foto yoki video</p>
+            <p class="field-hint" data-i18n="mediaHint">Vaziyatni aniq ko'rsatadigan fayl</p>
+          </div>
+          <span class="required-mark" data-i18n="required">KERAK</span>
+        </div>
+        <label class="upload-zone" for="media-input" id="upload-zone">
+          <input id="media-input" name="media" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/quicktime" capture="environment" required>
+          <span class="upload-icon" aria-hidden="true">＋</span>
+          <span class="upload-copy">
+            <strong data-i18n="uploadTitle">Fayl tanlang</strong>
+            <small data-i18n="uploadHint">Rasm yoki video · 20 MB gacha</small>
+          </span>
+          <span class="upload-arrow" aria-hidden="true">›</span>
+        </label>
+        <div class="media-preview" id="media-preview" hidden></div>
+
+        <label class="field-label" for="description"><span data-i18n="descriptionLabel">Izoh</span> <span class="optional" data-i18n="optional">ixtiyoriy</span></label>
+        <textarea id="description" name="description" rows="3" maxlength="500" placeholder="" data-i18n-placeholder="descriptionPlaceholder"></textarea>
+        <div class="field-footer"><span data-i18n="descriptionHint">Joylashuv yoki tafsilotlarni yozing</span><span id="char-count">0 / 500</span></div>
+
+        <div class="form-message" id="form-message" role="status" aria-live="polite" hidden></div>
+        <button class="submit-button" id="submit-button" type="submit">
+          <span data-i18n="submit">Report yuborish</span>
+          <span aria-hidden="true">↗</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="view" id="view-active" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow" data-i18n="activeEyebrow">NAZORATDA</p>
+          <h2 data-i18n="activeTitle">Faol reportlar</h2>
+        </div>
+        <button class="refresh-button" id="refresh-reports" type="button" aria-label="Refresh" title="Refresh">↻</button>
+      </div>
+      <div class="report-list" id="report-list"></div>
+    </section>
+
+    <footer class="app-footer">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span data-i18n="footer">P24TEX TEXNIK XIZMAT</span>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
